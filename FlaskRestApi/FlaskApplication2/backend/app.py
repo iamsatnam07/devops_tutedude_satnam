@@ -19,11 +19,29 @@ app = Flask(__name__)
 @app.route("/submit", methods=['POST'])
 def submit():
     try:
-        form_data = dict(request.form)
+        form_data = dict(request.json)
         result = collection.insert_one(form_data)
         return "Data submitted succesfully"
     except Exception as e:
         return jsonify({"error": str(e)}), 500  
 
+@app.route("/view")
+def view():
+    try:
+        data = collection.find()
+        data = list(data)
+
+        for item in data:
+            print(item)
+            del item['_id']
+        
+        data = {
+            'data':data
+        }
+        return data
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500  
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port='9000',debug=True)
