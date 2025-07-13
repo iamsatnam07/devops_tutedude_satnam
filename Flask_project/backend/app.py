@@ -2,28 +2,45 @@ from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import os
 import pymongo
-from urllib.parse import quote_plus
+
+# from flask_cors import CORS
+# app = Flask(__name__)
+# CORS(app, resources={r"/signup": {"origins": "http://localhost:9000"}})
 
 load_dotenv()
 
-password = quote_plus("qwerty@123")
-MONGO_URI = f"mongodb+srv://new_user07:{password}@cluster0.iee48.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URL = os.getenv("MONGO_URL")
 
-client = pymongo.MongoClient(MONGO_URI)
+connection = pymongo.MongoClient(MONGO_URL)
 
-db = client.users
-collection = db['user_data'] 
+db = connection.test
+
+collection = db['user_details']
 
 app = Flask(__name__)
 
-@app.route("/submit", methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def submit():
     try:
-        form_data = dict(request.form)
-        result = collection.insert_one(form_data)
+        form_data = dict(request.json)
+        collection.insert_one(form_data)
         return "Data submitted succesfully"
     except Exception as e:
         return jsonify({"error": str(e)}), 500  
+    
+@app.route('/fetch', methods=['GET'])
+def fetch():
+    data = collection.find()
+    data = list(data)
+
+    for elem in data:
+        print(elem)
+        del elem['_id']
+
+    data ={
+        'data':data
+    }
+    return data
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=8000, debug=True)

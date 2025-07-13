@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reaction Time Test</title>
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reaction Time Test</h1>
+    <p>Click the box as soon as it appears</p>
+    <div id="box"></div>
+    <script>
+      let startTime;
+      const box = document.getElementById("box");
+
+      function showBox() {
+        const wh = Math.floor(Math.random() * 400 + 100);
+        const top = Math.floor(Math.random() * 100);
+        const left = Math.floor(Math.random() * 100);
+
+        box.style.width = wh + "px";
+        box.style.height = wh + "px";
+        box.style.top = top + "px";
+        box.style.left = left + "px";
+        const randomColor =
+          "#" + Math.floor(Math.random() * 16777215).toString(16);
+        box.style.backgroundColor = randomColor;
+        box.style.display = "block";
+        startTime = new Date().getTime(); //calculate time when box cretaed
+      }
+      showBox(); // run first time
+
+      box.onclick = function () {
+        const endTime = new Date().getTime(); // calculate time when box will be click
+        const reactionTime = endTime - startTime;
+        alert(`Your reaction time: ${reactionTime / 1000}sec`);
+        this.style.display = "none";
+        showBox(); // lexical scoping
+      };
+    </script>
+  </body>
+</html>

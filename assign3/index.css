@@ -1,0 +1,168 @@
+/* *{
+    padding:0px;
+    margin:0px;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.main{
+    height: 500px;
+    width: 500px;
+    background-color: beige;
+    
+} */
+    /*
+.form{
+    position: relative;
+    top:100px;
+
+    width: 500px;
+    height: 500px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: beige;
+    border: solid 1px black;
+    
+}
+.form >div{
+    background-color: bisque;
+    margin:10px;
+    padding:2px;
+    border-radius: 1px;
+
+}
+
+#mail, #phone, #Password {
+  position: relative;
+  left: 10px;
+}
+#button{
+    background-color:black;
+    color:white;
+    border-radius:2px;
+    height: 20px;
+    width: 50px;
+} */
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.main {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.main p {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #34495e;
+  font-weight: 500;
+}
+
+input {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+input::placeholder {
+  color: #95a5a6;
+  font-size: 0.9rem;
+}
+
+#button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+#button:hover {
+  background-color: #2980b9;
+}
+
+input.error {
+  border-color: #e74c3c;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 20px;
+  }
+  
+  .main p {
+    font-size: 1.3rem;
+  }
+  
+  input, #button {
+    padding: 10px 12px;
+  }
+}
