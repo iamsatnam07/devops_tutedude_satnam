@@ -1,11 +1,10 @@
 import boto3
 
-# which service or services you’re going to use:
-s3 = boto3.resource('s3')
+s3 = boto3.client('s3')
 
-# Print out bucket names
-for bucket in s3.buckets.all():
-    print(bucket.name)
+response = s3.list_buckets()
+for bucket in response['Buckets']:
+    print(bucket['Name'])
 
 # client = boto3.client('ssm',region_name='ap-south-1')
 
